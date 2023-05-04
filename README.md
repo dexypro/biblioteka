@@ -10,9 +10,13 @@
 :white_check_mark: - Имплементирати CRUD операције бар за једну табелу  
   
 # Slika Programa
-![Slika Programa](slika.jpg)
+<p align="center">
+  <img src="slika.jpg" alt="Slika Programa">
+</p>
 
 # Slika EER Dijagrama
-![Slika modela](modelBibl.png)
+<p align="center">
+  <img src="modelBibl.png" alt="Slika ERR dijagrama">
+</p>
 
 
