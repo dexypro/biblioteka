@@ -7,7 +7,7 @@
 :white_check_mark: - Написати sql наредбе за креирање базе података, табела, веза између табела   
 :white_check_mark: - Додати бар по два податка по табели   
 :white_check_mark: - Базу повезати са Јава пројектом   
-:white_check_mark: - Имплементирати CRUD операције бар за једну табелу   :question:
+:white_check_mark: - Имплементирати CRUD операције бар за једну табелу  
   
 # Slika Programa
 ![Slika Programa](slika.jpg)
