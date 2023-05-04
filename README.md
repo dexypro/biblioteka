@@ -12,7 +12,7 @@
 # Прогам
 <p align="center">
   
-  <img src="slikaFin.jpg" alt="Slika Programa">
+  <img src="slikFinal.jpg" alt="Slika Programa">
 </p>
 
 # EER Дијаграм
