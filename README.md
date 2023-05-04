@@ -9,7 +9,7 @@
 :white_check_mark: - Базу повезати са Јава пројектом   
 :white_check_mark: - Имплементирати CRUD операције бар за једну табелу  
   
-# Programa
+# Program
 <p align="center">
   
   <img src="slika.jpg" alt="Slika Programa">
