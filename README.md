@@ -15,7 +15,7 @@
   <img src="slika.jpg" alt="Slika Programa">
 </p>
 
-# EER Dijagrama
+# EER Dijagram
 <p align="center">
   <img src="modelBibl.png" alt="Slika ERR dijagrama">
 </p>
