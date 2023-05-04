@@ -1,0 +1,47 @@
+INSERT INTO info_centar.Biblioteke (PIB, Naziv, Ulica, Broj, Mesto, Telefon) VALUES
+(123456, 'Biblioteka Svetlost', 'Kralja Petra', '12', 'Beograd', '+38111223344'),
+(789012, 'Biblioteka Znanje', 'Nemanjina', '45', 'Novi Sad', '+38121987654');
+
+INSERT INTO info_centar.Bibliotekari (ŠifraZaposlenog, Ime, Prezime, Ulica, Broj, Mesto, JMBG, Telefon, PIB) VALUES
+(1001, 'Petar', 'Petrović', 'Gavrila Principa', '23', 'Beograd', 7101991821234, '+381641112233', 123456),
+(1002, 'Ana', 'Anić', 'Radoja Domanovića', '11', 'Novi Sad', 8207284821234, '+381635557788', 789012);
+
+INSERT INTO info_centar.Članovi (BrojČlanskeKarte, Ime, Prezime, DatumRodjenja, Telefon, Ulica, Broj, Mesto) VALUES
+(10001, 'Marko', 'Marković', '1990-08-15', '+381699876543', 'Knez Mihailova', '3', 'Beograd'),
+(10002, 'Jelena', 'Jelenić', '1995-12-20', '+381692223344', 'Zmaj Jovina', '16', 'Novi Sad');
+
+INSERT INTO info_centar.Upis (idUpis, PIB, BrojČlanskeKarte) VALUES
+(1, 123456, 10001),
+(2, 789012, 10002);
+
+INSERT INTO info_centar.Dečije (idDečije, Uzrast) VALUES
+(1, 7),
+(2, 10);
+
+INSERT INTO info_centar.Naučno (idNaučno, NazivOblasti) VALUES
+(1, 'Fizika'),
+(2, 'Biologija');
+
+INSERT INTO info_centar.Pozajmno (idPozajmno, Aktuelnost, Žanr) VALUES
+(1, 'Novo', 'Roman'),
+(2, 'Starije', 'Drama');
+
+INSERT INTO info_centar.NalaziSe (idNalaziSe, idDečije, idPozajmno, idNaučno) VALUES
+(1, 1, 1, 1),
+(2, 2, 2, 2);
+
+INSERT INTO info_centar.Knjige (ISBN, Naziv, Jezik, Izdavač, PIB, idNalaziSe) VALUES
+(978861001, 'Deca sunca', 'Srpski', 'Prometej', 123456, 1),
+(978862002, 'Zvezdana prašina', 'Srpski', 'Laguna', 789012, 2);
+
+INSERT INTO info_centar.Autori (idAutora, Ime, Prezime) VALUES
+(1, 'Miloš', 'Crnjanski'),
+(2, 'Danilo', 'Kiš');
+
+INSERT INTO info_centar.AutoriKnjige (idNapisao, idAutora, ISBN) VALUES
+(1, 1, 978861001),
+(2, 2, 978862002);
+
+INSERT INTO info_centar.IzdataKnjiga (idIzdata, ŠifraZaposlenog, BrojČlanskeKarte, datumIzdavanja, datumVraćanja, ISBN) VALUES
+(1, 1001, 10001, '2023-05-01', '2023-05-15', 978861001),
+(2, 1002, 10002, '2023-05-02', '2023-05-16', 978862002);

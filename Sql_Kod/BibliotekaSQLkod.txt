@@ -1,0 +1,215 @@
+create database info_centar;
+
+use info_centar;
+
+# Kreiranje tabele BIBLIOTEKE
+
+CREATE TABLE IF NOT EXISTS `info_centar`.`Biblioteke` (
+  `PIB` INT NOT NULL,
+  `Naziv` VARCHAR(45) NOT NULL,
+  `Ulica` VARCHAR(45) NOT NULL,
+  `Broj` VARCHAR(45) NOT NULL,
+  `Mesto` VARCHAR(45) NOT NULL,
+  `Telefon` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`PIB`))
+ENGINE = InnoDB;
+
+
+
+# Kreiranje tabele BIBLIOTEKARI
+
+CREATE TABLE IF NOT EXISTS `info_centar`.`Bibliotekari` (
+  `ŠifraZaposlenog` INT NOT NULL,
+  `Ime` VARCHAR(45) NOT NULL,
+  `Prezime` VARCHAR(45) NOT NULL,
+  `Ulica` VARCHAR(45) NOT NULL,
+  `Broj` VARCHAR(45) NOT NULL,
+  `Mesto` VARCHAR(45) NOT NULL,
+  `JMBG` INT(13) NOT NULL,
+  `Telefon` VARCHAR(45) NULL,
+  `PIB` INT NOT NULL,
+  PRIMARY KEY (`ŠifraZaposlenog`),
+  INDEX `PIB_idx` (`PIB` ASC) VISIBLE,
+
+    FOREIGN KEY (`PIB`)
+    REFERENCES `info_centar`.`Biblioteke` (`PIB`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+# Kreiranje tabele ČLANOVI
+
+CREATE TABLE IF NOT EXISTS `info_centar`.`Članovi` (
+  `BrojČlanskeKarte` INT NOT NULL,
+  `Ime` VARCHAR(45) NOT NULL,
+  `Prezime` VARCHAR(45) NOT NULL,
+  `DatumRodjenja` DATE NOT NULL,
+  `Telefon` VARCHAR(45) NULL,
+  `Ulica` VARCHAR(45) NOT NULL,
+  `Broj` VARCHAR(45) NOT NULL,
+  `Mesto` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`BrojČlanskeKarte`))
+ENGINE = InnoDB;
+
+# Kreiranje tabele UPIS
+
+CREATE TABLE IF NOT EXISTS `info_centar`.`Upis` (
+  `idUpis` INT NOT NULL,
+  `PIB` INT NOT NULL,
+  `BrojČlanskeKarte` INT NOT NULL,
+  PRIMARY KEY (`idUpis`),
+  INDEX `PIB_idx` (`PIB` ASC) VISIBLE,
+  INDEX `BrojČlanskeKarte_idx` (`BrojČlanskeKarte` ASC) VISIBLE,
+  
+    FOREIGN KEY (`PIB`)
+    REFERENCES `info_centar`.`Biblioteke` (`PIB`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  
+    FOREIGN KEY (`BrojČlanskeKarte`)
+    REFERENCES `info_centar`.`Članovi` (`BrojČlanskeKarte`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+# Kreiranje tabele DECIJE
+
+CREATE TABLE IF NOT EXISTS `info_centar`.`Dečije` (
+  `idDečije` INT NOT NULL,
+  `Uzrast` INT NOT NULL,
+  PRIMARY KEY (`idDečije`))
+ENGINE = InnoDB;
+
+# Kreiranje tabele NAUCNO
+
+CREATE TABLE IF NOT EXISTS `info_centar`.`Naučno` (
+  `idNaučno` INT NOT NULL,
+  `NazivOblasti` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idNaučno`))
+ENGINE = InnoDB;
+
+# Kreiranje tabele POZAJMNO
+
+CREATE TABLE IF NOT EXISTS `info_centar`.`Pozajmno` (
+  `idPozajmno` INT NOT NULL,
+  `Aktuelnost` VARCHAR(45) NOT NULL,
+  `Žanr` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idPozajmno`))
+ENGINE = InnoDB;
+
+# Kreiranje tabele NALAZISE
+
+CREATE TABLE IF NOT EXISTS `info_centar`.`NalaziSe` (
+  `idNalaziSe` INT NOT NULL,
+  `idDečije` INT NOT NULL,
+  `idPozajmno` INT NOT NULL,
+  `idNaučno` INT NOT NULL,
+  PRIMARY KEY (`idNalaziSe`),
+  INDEX `idDečije_idx` (`idDečije` ASC) VISIBLE,
+  INDEX `idPozajmno_idx` (`idPozajmno` ASC) VISIBLE,
+  INDEX `idNaučno_idx` (`idNaučno` ASC) VISIBLE,
+  
+    FOREIGN KEY (`idDečije`)
+    REFERENCES `info_centar`.`Dečije` (`idDečije`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+ 
+    FOREIGN KEY (`idPozajmno`)
+    REFERENCES `info_centar`.`Pozajmno` (`idPozajmno`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  
+    FOREIGN KEY (`idNaučno`)
+    REFERENCES `info_centar`.`Naučno` (`idNaučno`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+# Kreiranje tabele KNJIGE
+
+CREATE TABLE IF NOT EXISTS `info_centar`.`Knjige` (
+  `ISBN` INT NOT NULL,
+  `Naziv` VARCHAR(45) NOT NULL,
+  `Jezik` VARCHAR(45) NOT NULL,
+  `Izdavač` VARCHAR(45) NOT NULL,
+  `PIB` INT NOT NULL,
+  `idNalaziSe` INT NOT NULL,
+  PRIMARY KEY (`ISBN`),
+  INDEX `PIB_idx` (`PIB` ASC) VISIBLE,
+  INDEX `nalaziSe_idx` (`idNalaziSe` ASC) VISIBLE,
+
+    FOREIGN KEY (`PIB`)
+    REFERENCES `info_centar`.`Biblioteke` (`PIB`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+ 
+    FOREIGN KEY (`idNalaziSe`)
+    REFERENCES `info_centar`.`NalaziSe` (`idNalaziSe`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+# Kreiranje tabele AUTORI
+
+CREATE TABLE IF NOT EXISTS `info_centar`.`Autori` (
+  `idAutora` INT NOT NULL,
+  `Ime` VARCHAR(45) NOT NULL,
+  `Prezime` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idAutora`))
+ENGINE = InnoDB;
+
+# Kreiranje tabele AUTORIKNJIGE
+
+CREATE TABLE IF NOT EXISTS `info_centar`.`AutoriKnjige` (
+  `idNapisao` INT NOT NULL,
+  `idAutora` INT NOT NULL,
+  `ISBN` INT NOT NULL,
+  PRIMARY KEY (`idNapisao`),
+  INDEX `idAutora_idx` (`idAutora` ASC) VISIBLE,
+  INDEX `ISBN_idx` (`ISBN` ASC) VISIBLE,
+    FOREIGN KEY (`idAutora`)
+    REFERENCES `info_centar`.`Autori` (`idAutora`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+
+    FOREIGN KEY (`ISBN`)
+    REFERENCES `info_centar`.`Knjige` (`ISBN`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+# Kreiranje tabele IZDATAKNJIGA
+
+CREATE TABLE IF NOT EXISTS `info_centar`.`IzdataKnjiga` (
+  `idIzdata` INT NOT NULL,
+  `ŠifraZaposlenog` INT NOT NULL,
+  `BrojČlanskeKarte` INT NOT NULL,
+  `datumIzdavanja` DATE NOT NULL,
+  `datumVraćanja` DATE NOT NULL,
+  `ISBN` INT NOT NULL,
+  PRIMARY KEY (`idIzdata`),
+  INDEX `ŠifraZaposlenog_idx` (`ŠifraZaposlenog` ASC) VISIBLE,
+  INDEX `BrojČlanskeKarte_idx` (`BrojČlanskeKarte` ASC) VISIBLE,
+  INDEX `ISBN_idx` (`ISBN` ASC) VISIBLE,
+    FOREIGN KEY (`ŠifraZaposlenog`)
+    REFERENCES `info_centar`.`Bibliotekari` (`ŠifraZaposlenog`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+    FOREIGN KEY (`BrojČlanskeKarte`)
+    REFERENCES `info_centar`.`Članovi` (`BrojČlanskeKarte`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+    FOREIGN KEY (`ISBN`)
+    REFERENCES `info_centar`.`Knjige` (`ISBN`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+
+
+
+
+
