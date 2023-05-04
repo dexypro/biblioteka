@@ -17,7 +17,7 @@
 
 # EER Дијаграм
 <p align="center">
-  <img src="modelBibl.png" alt="Slika ERR dijagrama">
+  <img src="modelBibli.png" alt="Slika ERR dijagrama">
 </p>
 
 
