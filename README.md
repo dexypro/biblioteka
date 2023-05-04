@@ -10,6 +10,6 @@
 :white_check_mark: - Имплементирати CRUD операције бар за једну табелу   :question:
 
 ![Slika Programa](slika.jpg)
-![Slika modela](slika.jpg)
+![Slika modela](modelBibl.png)
 
 
