@@ -9,6 +9,7 @@
 :white_check_mark: - Базу повезати са Јава пројектом   
 :white_check_mark: - Имплементирати CRUD операције бар за једну табелу   :question:
 
-![Alt text for the image](slika.jpg)
+![Slika Programa](slika.jpg)
+![Slika modela](slika.jpg)
 
 
