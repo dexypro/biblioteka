@@ -9,13 +9,13 @@
 :white_check_mark: - Базу повезати са Јава пројектом   
 :white_check_mark: - Имплементирати CRUD операције бар за једну табелу  
   
-# Slika Programa
+# Programa
 <p align="center">
   
   <img src="slika.jpg" alt="Slika Programa">
 </p>
 
-# Slika EER Dijagrama
+# EER Dijagrama
 <p align="center">
   <img src="modelBibl.png" alt="Slika ERR dijagrama">
 </p>
