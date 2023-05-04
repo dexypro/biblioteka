@@ -8,8 +8,11 @@
 :white_check_mark: - Додати бар по два податка по табели   
 :white_check_mark: - Базу повезати са Јава пројектом   
 :white_check_mark: - Имплементирати CRUD операције бар за једну табелу   :question:
-
+  
+# Slika Programa
 ![Slika Programa](slika.jpg)
+
+# Slika EER Dijagrama
 ![Slika modela](modelBibl.png)
 
 
